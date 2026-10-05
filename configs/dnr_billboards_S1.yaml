@@ -1,0 +1,50 @@
+log_dir: /mounted/media/dsvitov/Crucial_X6/our_checkpoints_PSNR
+
+trainer:
+  target: src.trainers.trainer.Trainer
+  params:
+    model_path: "/mounted/media/dsvitov/Crucial_X6/Head_and_hands/DecafDataset/"
+    num_iterations: 100_000
+    log_iteration: 10_000
+    batch_size: 1
+    render_size: 512
+    use_normals: true
+    mse_finetune_steps: 10000
+    mse_finetune_lr: 1e-4
+    mse_soup_alpha: 0.8
+
+    criteria:
+      hard_pixel_loss:
+        target: src.criteria.hard_pixel_loss.HardPixelMSELoss
+        params:
+          weight: 1.0
+          percentile: 80
+          render_source: render_rgb
+
+      perceptual_loss:
+        target: src.criteria.perceptual_loss.PerceptualLoss
+        params:
+          weight: 0.1
+          render_source: render_rgb
+
+      dice_loss:
+        target: src.criteria.dice_loss.DiceLoss
+        params:
+          weight: 0.1
+
+dataset_train:
+  target: src.datasets.decaf_IA_dataset.DecafDataset
+  params:
+    dataset_path: "/mounted/media/dsvitov/Crucial_X6/Head_and_hands/DecafDataset/"
+    person_id: "S1"
+    cam_ids: ['110', '100', '108', '084', '111', '121', '122']
+    render_size: 512
+
+dataset_test:
+  target: src.datasets.decaf_IA_dataset.DecafDataset
+  params:
+    dataset_path: "/mounted/media/dsvitov/Crucial_X6/Head_and_hands/DecafDataset/"
+    person_id: "S1"
+    cam_ids: ['102']
+    mode: "train"
+    render_size: 512

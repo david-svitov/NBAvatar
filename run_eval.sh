@@ -1,0 +1,4 @@
+python test.py --base=./configs/dnr_billboards_S1.yaml --pretrained=/mounted/media/dsvitov/Crucial_X61/our_checkpoints_PSNR/dnr_billboards_S1/2026_06-17_09-57/checkpoints/trainer_iter_100000_mse_soup.pth
+python test.py --base=./configs/dnr_billboards_S2.yaml --pretrained=/mounted/media/dsvitov/Crucial_X61/our_checkpoints_PSNR/dnr_billboards_S2/2026_06-17_11-19/checkpoints/trainer_iter_100000_mse_soup.pth
+python test.py --base=./configs/dnr_billboards_S3.yaml --pretrained=/mounted/media/dsvitov/Crucial_X61/our_checkpoints_PSNR/dnr_billboards_S3/2026_06-17_12-42/checkpoints/trainer_iter_100000_mse_soup.pth
+python test.py --base=./configs/dnr_billboards_S4.yaml --pretrained=/mounted/media/dsvitov/Crucial_X61/our_checkpoints_PSNR/dnr_billboards_S4/2026_06-17_14-03/checkpoints/trainer_iter_100000_mse_soup.pth
